@@ -17,6 +17,12 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 `;
+const Placeholder = styled.img`
+width: 120px;
+height: 120px;
+margin:200px;
+opacity: 50%;
+`;
 
 const RecipeComponent = (props) => {
   console.log(props);
@@ -48,8 +54,8 @@ const RecipeComponent = (props) => {
       </table>
     </DialogContent>
     <DialogActions>
-          <SeeNewTab onClick={() => window.open(url)}>See More</SeeNewTab>
-          <SeeMoreText onClick={()=> setShow("")}>Close</SeeMoreText>
+          <IngredientsText onClick={() => window.open(recipeObj.url)}>See More</IngredientsText>
+          <SeeMoreText onClick={()=> setShow(false)}>Close</SeeMoreText>
         </DialogActions>
      </Dialog>
     <RecipeContainer>
@@ -87,7 +93,7 @@ function App() {
         </SearchComponent>
         </Header>
         <RecipeListContainer>
-          {recipeList.length===0 ? "Taper un recipe" :  recipeList.length && recipeList.map((recipeObj) => (
+          {recipeList.length===0 ? <Placeholder src="/hamburger.svg" /> :  recipeList.length && recipeList.map((recipeObj) => (
             <RecipeComponent recipeObj={recipeObj.recipe} />
           ))}
         </RecipeListContainer>
